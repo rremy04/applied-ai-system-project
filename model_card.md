@@ -141,7 +141,7 @@ The biggest weakness I found is that the system matches labels as exact words, s
 
 ## 10. Personal Reflection  
 
-The biggest thing I learned is that the weights are opinions. I picked mood = 2 points and genre = 1 point because it felt right, and then a "sad" test user got no mood points at all because the dataset says "melancholic." Nothing was broken. The rules just did what I told them.
+The biggest thing I learned while working on this project is that the weights are opinions. I picked mood = 2 points and genre = 1 point because it felt right, and then a "sad" test user got no mood points at all because the dataset says "melancholic." Nothing was broken. The rules just did what I told them.
 
 AI tools were good for getting the structure up fast and for thinking of strange test profiles. I still had to read the actual scores myself. The tests passed the whole time, but they would never have told me that an energy of 2.0 gives negative points. I only saw that by reading the output.
 
