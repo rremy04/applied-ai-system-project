@@ -1,0 +1,75 @@
+flowchart TD
+    USER(["User request<br/>python -m src.main  (interactive or --query)"])
+
+    subgraph DATA["Catalog (built once at start-up)"]
+        CSV[("data/songs.csv<br/>18 songs + hand-written notes")]
+        DESC["build_description<br/>genre, mood, number-derived words, notes"]
+        CSV --> DESC
+    end
+
+    subgraph PIPE["src/pipeline.py: answer_query (never raises)"]
+        direction TB
+
+        subgraph PARSE["1. Parse: query_parser.py"]
+            LLMP["LLM parses the request<br/>(Gemini by default, model from .env)"]
+            KEYWORD["Keyword parser<br/>(no key, error, or bad JSON)"]
+            NQ["Normalized query<br/>genres, moods, scenes, synonyms, numeric_features"]
+            LLMP --> NQ
+            KEYWORD --> NQ
+        end
+
+        subgraph RETRIEVE["2. Retrieve: retriever.py"]
+            TFIDF["TF-IDF text similarity<br/>over song descriptions"]
+            SCORER["Weighted scorer: score_song<br/>after synonym + implied-feature adapter"]
+            BLEND["Blend 0.5 / 0.5<br/>x compatibility factor (mood clash halves score)"]
+            TFIDF --> BLEND
+            SCORER --> BLEND
+        end
+
+        SIGNAL{"Top score > 0 ?"}
+        CLIENT{"API client available ?"}
+
+        subgraph GEN["3. Generate + guard: generator.py"]
+            GENERATE["LLM writes the answer from the<br/>retrieved songs only, JSON with song IDs"]
+            CHECK{"Guardrail check<br/>JSON parses, IDs in retrieved set"}
+            DROP["Drop invalid IDs, log event"]
+            RETRY["Retry once, telling the model what was wrong"]
+            CHECK2{"Guardrail check again"}
+            GENERATE --> CHECK
+            CHECK -- "some IDs invalid" --> DROP
+            CHECK -- "nothing valid, or error" --> RETRY
+            RETRY --> CHECK2
+        end
+
+        NQ --> TFIDF
+        NQ --> SCORER
+        BLEND --> SIGNAL
+        SIGNAL -- "no" --> NOMATCH["source = no_match<br/>no LLM call"]
+        SIGNAL -- "yes" --> CLIENT
+        CLIENT -- "no" --> FALLBACK
+        CLIENT -- "yes" --> GENERATE
+        CHECK -- "all valid" --> OK["source = llm"]
+        DROP --> OK
+        CHECK2 -- "valid" --> OK2["source = llm_retry"]
+        CHECK2 -- "still bad" --> FALLBACK["source = fallback<br/>top 3 with scorer reasons"]
+    end
+
+    ANSWER(["Answer: summary, recommendations, source, guardrail events"])
+    HUMAN{{"Human review<br/>reads sampled answers, guardrail events and eval reports;<br/>sets thresholds and decides what ships"}}
+    LOG[("logs/app.log<br/>queries, retrieved IDs, guardrail events, fallbacks")]
+    EVAL["tests/eval_rag.py<br/>offline and --online evaluation"]
+
+    USER --> LLMP
+    USER --> KEYWORD
+    DESC --> TFIDF
+    DESC --> SCORER
+    NOMATCH --> ANSWER
+    OK --> ANSWER
+    OK2 --> ANSWER
+    FALLBACK --> ANSWER
+    PIPE -. "every stage logs" .-> LOG
+    EVAL -. "calls answer_query" .-> PIPE
+    ANSWER -. "spot-checked by a person" .-> HUMAN
+    LOG -. "reviewed for failures" .-> HUMAN
+    EVAL -- "reports for review" --> HUMAN
+    HUMAN -. "frozen floors and fixes" .-> EVAL

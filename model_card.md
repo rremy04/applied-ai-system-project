@@ -99,7 +99,47 @@ The biggest weakness I found is that the system matches labels as exact words, s
 
 ---
 
-## 9. Personal Reflection  
+## 9. RAG Extension: Evaluation and Limitations
+
+**What was added.** Free-text requests ("sad piano") are parsed into a structured query, retrieved with a blend of TF-IDF text similarity and the weighted scorer above, and then explained by an LLM (Google Gemini by default) using only the retrieved songs. A guardrail drops song IDs that were not retrieved, retries once, and falls back to the scorer's own reasons. A query that retrieves nothing is answered with "no match" instead of a guess.
+
+**How it was evaluated.** `python -m tests.eval_rag` runs 14 queries (12 relevance, 2 gibberish). Ground truth lists acceptable genres and moods, never song IDs, and was written before any results were looked at. A hit means the returned song has an acceptable genre or mood (and any required field). Every retrieval variant is scored on the same parsed query, so differences come from retrieval and not from parsing. Full per-query output is in `eval_results/offline.md` and `.json`.
+
+**Offline results (keyword parser, no API, 12 relevance queries).**
+
+| Variant | Top-1 | Top-3 | Gibberish refused |
+|---|---|---|---|
+| Original scorer alone | 50% | 50% | 0% |
+| Structured only (scorer through the retrieval adapter) | 83% | 83% | 100% |
+| Hybrid, text weight 0.25 / 0.50 / 0.75 | 83% | 83% | 100% |
+| Text only (TF-IDF) | 83% | 83% | 100% |
+
+**What the numbers do and do not show.**
+- The jump from 50% to 83% comes from synonym normalization and compatibility scoring in the retrieval adapter. Adding text search on top changed nothing measurable: every text weight from 0 to 1 tied. This test set cannot say which weight is best, and 0.5 should not be described as optimal.
+- Top-3 can never exceed top-1 here, because the catalog is so small. It is a weak metric until the catalog grows.
+- With 12 relevance queries these figures are indicative only. A frozen floor in `tests/eval_thresholds.json` guards against regressions; it is not evidence of general recommendation quality.
+
+**Offline limitations (stated plainly).**
+- The offline parser has no sense of meaning. "Music for when I'm heartbroken" and "music to fall asleep to" produced no signal at all, so both are misses (the real pipeline answers "no match" for them). I deliberately did not add "heartbroken" to the synonym table, because that would be fitting the system to the test.
+- The paraphrase queries are weaker generalization tests than intended. Three of the hits share a word with the hand-written notes column (pump, work, drive), so they partly measure vocabulary I wrote myself.
+- The offline parser splits "I'm" into "I" and "m" and lets "m" through as a search term. It is harmless here but is a real tokenization bug.
+- Synonym normalization and compatibility scoring are bundled into the adapter, so the 50% to 83% gain cannot be split between them. The mood-clash and implied-feature tables are my own judgment calls (for example, "moody" clashes with "happy").
+- Moods are still single labels, a clash halves a song's score by a fixed factor, and nothing checks whether an explanation is true. A valid song ID with a wrong claim ("calm" for a metal track) passes the guardrail.
+- No minimum retrieval score is applied beyond "top score is zero". Weak but nonzero matches still reach the model.
+- A measurement bug was caught during review: the first run reported 92% because zero-score padding results (sorted alphabetically) were graded as hits. One of them matched by luck. The harness now gives no credit to results with no signal, and a regression test covers it. The honest baseline is 83%.
+
+**Bias and risk in the RAG layer.**
+- *Tiny corpus.* The catalog has 18 songs, 15 genres and 14 moods, and most labels appear once. A request usually has one obvious answer, so retrieval quality is hard to judge and a good score may just mean "the one song with that label." Across the 12 relevance queries the top 3 drew on 16 of the 18 songs, and two songs (Coffee Shop Stories and Dusty Back Road) were never retrieved by any of them.
+- *Filter-bubble effect.* The system returns the songs closest to what was asked for, and the compatibility rule goes further: a song whose mood clashes with the request has its score halved. A sad request will therefore almost never surface an upbeat song. That is intended, but it narrows exposure by design, and there is no diversity rule or "something different" option. In the offline run Moonlit Sonata and Night Drive Loop were returned most often (3 of 25 top-3 slots each). Those queries were deliberately varied, so this understates how repetitive a single listener's session would feel, and repetition over a session was not measured.
+- *LLM hallucination risk.* The guardrail verifies that every recommended song ID was actually retrieved, which stops invented songs. It does not verify that the explanation is true. The model could still attribute qualities a song does not have, or add details beyond the attributes it was given. The prompt restricts it to the listed attributes, but how often it strays has not been measured: only a few real calls have been checked by hand, and the full online evaluation has not been run. The fallback explanations are built directly from the scorer's reasons, so they cannot invent anything. The user's request is also untrusted text; the prompt tells the model to ignore instructions inside it that conflict with the rules, but that was not tested against deliberate prompt-injection attempts.
+
+**Provider notes.** The default is Google Gemini (`gemini-3.5-flash`); Anthropic's Claude is supported in the same code path, but that path has never been run against the real API, only against fakes. Three findings from testing Gemini that shaped the adapter: with default settings the model spent 480 of a 500-token budget on hidden "thinking", which cut the JSON answer off after 37 characters, so thinking is switched off; the default API version rejected system instructions on some models, so the adapter pins `v1beta`; and model names change (one lighter model was already closed to new accounts), so the model is a setting, not a constant.
+
+**Not yet measured: the online run.** Guardrail pass, retry and fallback rates, repeated-run consistency, and how real LLM parsing handles the paraphrase queries have not been measured. Run `python -m tests.eval_rag --online` with a key in `.env`. Until that has run, none of those claims should be made. Only a few real calls have been checked so far (a manual query and three integration tests, all passing on `gemini-3.5-flash`).
+
+---
+
+## 10. Personal Reflection  
 
 The biggest thing I learned is that the weights are opinions. I picked mood = 2 points and genre = 1 point because it felt right, and then a "sad" test user got no mood points at all because the dataset says "melancholic." Nothing was broken. The rules just did what I told them.
 
@@ -110,3 +150,38 @@ What surprised me is how much it feels like a real recommender. Chill Lofi gave 
 Next I would try the mood fix first, then let one user have two profiles. I want to see if the Gym Hero problem goes away.
 
 Overall, this was truly a fun project to work on as someone who loves Spotify so getting to work on something like this was exciting
+
+The biggest lesson about working with AI was that I had to fact-check everything it generated. Not everything it proposed was what I was trying to achieve. When it offered choices on how to implement something, instead of giving me only one way, I could make my own decisions about which option fit the project. That made me the one accountable for the result.
+
+---
+
+## 11. Responsible AI Reflection
+
+### Limitations and biases
+
+The main limits are listed in sections 6 and 9. The short version: an 18-song catalog where most labels appear once, a keyword parser that cannot understand paraphrases, an LLM explanation step that is not checked for truth (only for valid song IDs), and an evaluation too small to show general quality. Bias is mostly structural. The mood-clash penalty keeps the system from answering a sad request with an upbeat song. That protects against bad matches, but it also narrows what a listener sees.
+
+### Could the system be misused?
+
+- **Emotional targeting.** A request like "music for when I'm heartbroken" gets melancholy songs back, and nothing in the system checks whether a listener is in a fragile state. Repeatedly returning sad songs could deepen a low mood. It should not be presented as wellbeing support. Mitigation: the system stores no listener history, and this card says it is not a clinical or wellbeing tool.
+- **Private text in logs.** Every query is written in plain text to `logs/app.log`. A user could type something personal into it. Mitigation: the log is git-ignored and local, but a deployed version would need redaction and a retention limit.
+- **Prompt injection through the request.** The request text goes into the prompt, so a crafted request could try to override the rules. The prompt marks the request as untrusted and tells the model to follow the rules, but I have not tested this against deliberate attacks. The guardrail limits the damage: the model can only name retrieved songs, so an attack cannot make it recommend something outside the catalog.
+- **Cost abuse.** Anyone with the API key can spend it. Mitigation: the key lives only in the git-ignored `.env`, each call has a timeout, a request makes at most three model calls (parse, generate, one retry), and the free tier's daily quota caps the damage in this setup.
+
+### What surprised me while testing reliability
+
+- **My first accuracy number was wrong.** The harness reported 92%, but zero-score results were graded as hits, and one of them only matched by alphabetical luck. The honest figure is 83%. I added a regression test so the bug can't come back.
+- **Gemini spent its budget on hidden reasoning.** With default settings, the model used 480 of 500 output tokens on reasoning, and the JSON answer was cut off after 37 characters. The fix was to turn thinking off, but the failure was silent until I looked at the token counts.
+- **A quota error looked like a model failure.** On the free tier, a daily limit made answers fall back and retry, which looked like the recommender breaking. The retry could never succeed, so the system now skips it, and the evaluation reports quota-limited runs separately.
+- **The fallback was silent.** When the parser lost its connection, the app quietly switched to keyword matching. Only the debug view showed it. It is now a visible guardrail event.
+- **Top-1 was stable but the rest changed.** Across five runs of one request, the top pick never changed, but the second and third picks moved. The measured consistency is still thin, because the full repeated-run evaluation has not been run.
+
+### How I worked with AI
+
+I used an AI assistant (Claude) throughout the project for design, code, tests and documentation. Two concrete examples, one accepted and one changed:
+
+- **Accepted, with changes: the guardrail policy.** The assistant proposed dropping invalid song IDs, retrying once when nothing valid remains, and then falling back to the scorer. I accepted this. It is the right trade-off because one bad ID should not discard a good answer. I did add the no-retry rule for quota errors, which the proposal did not cover.
+- **Not accepted: the Anthropic-first plan.** The assistant recommended an Anthropic key. I chose Gemini instead, because Anthropic's API needs paid credits and I did not want to spend money on the project. That meant building a provider adapter, and testing against the real API exposed two problems the original plan did not foresee: thinking tokens truncating the answer, and the default API version rejecting system instructions.
+
+Other suggestions were checked against the code and the evaluation rather than taken on trust. The assistant's first grading of the evaluation counted zero-score results as hits, and that was caught by reading the per-query rows, not by the tests. Every number in this card was produced by the code in this repository, and the real-model evaluation remains unrun.
+

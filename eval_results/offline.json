@@ -1,0 +1,3843 @@
+{
+  "mode": "offline",
+  "generated_at": "2026-11-18T01:52:23+00:00",
+  "catalog_size": 18,
+  "n_queries": 14,
+  "n_positive": 12,
+  "n_negative": 2,
+  "summary": {
+    "original_scorer": {
+      "top1": 0.5,
+      "top3": 0.5,
+      "negative_accuracy": 0.0,
+      "top1_hits_meeting_supporting": 1.0
+    },
+    "w=0.00": {
+      "top1": 0.8333333333333334,
+      "top3": 0.8333333333333334,
+      "negative_accuracy": 1.0,
+      "top1_hits_meeting_supporting": 1.0
+    },
+    "w=0.25": {
+      "top1": 0.8333333333333334,
+      "top3": 0.8333333333333334,
+      "negative_accuracy": 1.0,
+      "top1_hits_meeting_supporting": 1.0
+    },
+    "w=0.50": {
+      "top1": 0.8333333333333334,
+      "top3": 0.8333333333333334,
+      "negative_accuracy": 1.0,
+      "top1_hits_meeting_supporting": 1.0
+    },
+    "w=0.75": {
+      "top1": 0.8333333333333334,
+      "top3": 0.8333333333333334,
+      "negative_accuracy": 1.0,
+      "top1_hits_meeting_supporting": 1.0
+    },
+    "w=1.00": {
+      "top1": 0.8333333333333334,
+      "top3": 0.8333333333333334,
+      "negative_accuracy": 1.0,
+      "top1_hits_meeting_supporting": 1.0
+    }
+  },
+  "pipeline": {
+    "runs_per_query": 1,
+    "total_runs": 14,
+    "rate_limited_runs": 0,
+    "clean_runs": 14,
+    "answered_runs": 10,
+    "parse_fallback_runs": 0,
+    "guardrail_pass_rate": 0.0,
+    "retry_rate": 0.0,
+    "fallback_rate": 1.0,
+    "dropped_id_events": 0,
+    "negative_accuracy": 1.0,
+    "end_to_end_top1": 0.8333333333333334,
+    "end_to_end_top3": 0.8333333333333334,
+    "top1_consistency": null,
+    "mean_recommendation_overlap": null,
+    "mean_latency_s": 0.0005819226997638387,
+    "per_query": [
+      {
+        "id": "q01",
+        "query": "mellow music for studying on a rainy night",
+        "sources": [
+          "fallback"
+        ],
+        "recommended_ids": [
+          [
+            4,
+            2,
+            6
+          ]
+        ],
+        "events": [
+          [
+            "no API client: using scorer fallback"
+          ]
+        ]
+      },
+      {
+        "id": "q02",
+        "query": "sad piano",
+        "sources": [
+          "fallback"
+        ],
+        "recommended_ids": [
+          [
+            12,
+            18,
+            6
+          ]
+        ],
+        "events": [
+          [
+            "no API client: using scorer fallback"
+          ]
+        ]
+      },
+      {
+        "id": "q03",
+        "query": "dark synthwave for a night drive",
+        "sources": [
+          "fallback"
+        ],
+        "recommended_ids": [
+          [
+            8,
+            15,
+            12
+          ]
+        ],
+        "events": [
+          [
+            "no API client: using scorer fallback"
+          ]
+        ]
+      },
+      {
+        "id": "q04",
+        "query": "romantic date night, slow and smooth",
+        "sources": [
+          "fallback"
+        ],
+        "recommended_ids": [
+          [
+            14,
+            12,
+            2
+          ]
+        ],
+        "events": [
+          [
+            "no API client: using scorer fallback"
+          ]
+        ]
+      },
+      {
+        "id": "q05",
+        "query": "aggressive heavy music",
+        "sources": [
+          "fallback"
+        ],
+        "recommended_ids": [
+          [
+            15,
+            3,
+            17
+          ]
+        ],
+        "events": [
+          [
+            "no API client: using scorer fallback"
+          ]
+        ]
+      },
+      {
+        "id": "q06",
+        "query": "high energy workout music for the gym",
+        "sources": [
+          "fallback"
+        ],
+        "recommended_ids": [
+          [
+            5,
+            3,
+            8
+          ]
+        ],
+        "events": [
+          [
+            "no API client: using scorer fallback"
+          ]
+        ]
+      },
+      {
+        "id": "q07",
+        "query": "something to pump me up before a race",
+        "sources": [
+          "fallback"
+        ],
+        "recommended_ids": [
+          [
+            5,
+            7,
+            11
+          ]
+        ],
+        "events": [
+          [
+            "no API client: using scorer fallback"
+          ]
+        ]
+      },
+      {
+        "id": "q08",
+        "query": "music for when I'm heartbroken",
+        "sources": [
+          "no_match"
+        ],
+        "recommended_ids": [
+          []
+        ],
+        "events": [
+          [
+            "no retrieval signal: nothing in the catalog matched"
+          ]
+        ]
+      },
+      {
+        "id": "q09",
+        "query": "something unobtrusive to keep me company while I work through a long programming session",
+        "sources": [
+          "fallback"
+        ],
+        "recommended_ids": [
+          [
+            9,
+            7,
+            11
+          ]
+        ],
+        "events": [
+          [
+            "no API client: using scorer fallback"
+          ]
+        ]
+      },
+      {
+        "id": "q10",
+        "query": "songs that make a long drive through the city feel like a movie",
+        "sources": [
+          "fallback"
+        ],
+        "recommended_ids": [
+          [
+            8,
+            11,
+            7
+          ]
+        ],
+        "events": [
+          [
+            "no API client: using scorer fallback"
+          ]
+        ]
+      },
+      {
+        "id": "q11",
+        "query": "something cheerful for a beach day",
+        "sources": [
+          "fallback"
+        ],
+        "recommended_ids": [
+          [
+            1,
+            10,
+            16
+          ]
+        ],
+        "events": [
+          [
+            "no API client: using scorer fallback"
+          ]
+        ]
+      },
+      {
+        "id": "q12",
+        "query": "music to fall asleep to",
+        "sources": [
+          "no_match"
+        ],
+        "recommended_ids": [
+          []
+        ],
+        "events": [
+          [
+            "no retrieval signal: nothing in the catalog matched"
+          ]
+        ]
+      },
+      {
+        "id": "n01",
+        "query": "asdfgh qwerty",
+        "sources": [
+          "no_match"
+        ],
+        "recommended_ids": [
+          []
+        ],
+        "events": [
+          [
+            "no retrieval signal: nothing in the catalog matched"
+          ]
+        ]
+      },
+      {
+        "id": "n02",
+        "query": "zxqv blorf 9182",
+        "sources": [
+          "no_match"
+        ],
+        "recommended_ids": [
+          []
+        ],
+        "events": [
+          [
+            "no retrieval signal: nothing in the catalog matched"
+          ]
+        ]
+      }
+    ]
+  },
+  "records": [
+    {
+      "id": "q01",
+      "query": "mellow music for studying on a rainy night",
+      "tests": "scene words",
+      "expect": "hit",
+      "parsed": {
+        "genres": [],
+        "moods": [
+          "chill",
+          "focused"
+        ],
+        "scenes": [],
+        "synonyms": [
+          "mellow",
+          "studying",
+          "rainy",
+          "night"
+        ],
+        "numeric_features": {
+          "energy": 0.3
+        }
+      },
+      "ground_truth": {
+        "acceptable": {
+          "genre": [
+            "lofi"
+          ],
+          "mood": [
+            "chill",
+            "focused"
+          ]
+        },
+        "supporting": {
+          "energy": [
+            0.0,
+            0.5
+          ]
+        }
+      },
+      "variants": {
+        "original_scorer": {
+          "top": [
+            {
+              "id": 6,
+              "title": "Spacewalk Thoughts",
+              "genre": "ambient",
+              "mood": "chill",
+              "score": 3.96,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 4,
+              "title": "Library Rain",
+              "genre": "lofi",
+              "mood": "chill",
+              "score": 3.9,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 2,
+              "title": "Midnight Coding",
+              "genre": "lofi",
+              "mood": "chill",
+              "score": 3.76,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.00": {
+          "top": [
+            {
+              "id": 6,
+              "title": "Spacewalk Thoughts",
+              "genre": "ambient",
+              "mood": "chill",
+              "score": 0.99,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 4,
+              "title": "Library Rain",
+              "genre": "lofi",
+              "mood": "chill",
+              "score": 0.975,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 2,
+              "title": "Midnight Coding",
+              "genre": "lofi",
+              "mood": "chill",
+              "score": 0.94,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.25": {
+          "top": [
+            {
+              "id": 4,
+              "title": "Library Rain",
+              "genre": "lofi",
+              "mood": "chill",
+              "score": 0.832,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 6,
+              "title": "Spacewalk Thoughts",
+              "genre": "ambient",
+              "mood": "chill",
+              "score": 0.774,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 2,
+              "title": "Midnight Coding",
+              "genre": "lofi",
+              "mood": "chill",
+              "score": 0.765,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.50": {
+          "top": [
+            {
+              "id": 4,
+              "title": "Library Rain",
+              "genre": "lofi",
+              "mood": "chill",
+              "score": 0.689,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 2,
+              "title": "Midnight Coding",
+              "genre": "lofi",
+              "mood": "chill",
+              "score": 0.59,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 6,
+              "title": "Spacewalk Thoughts",
+              "genre": "ambient",
+              "mood": "chill",
+              "score": 0.559,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.75": {
+          "top": [
+            {
+              "id": 4,
+              "title": "Library Rain",
+              "genre": "lofi",
+              "mood": "chill",
+              "score": 0.546,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 2,
+              "title": "Midnight Coding",
+              "genre": "lofi",
+              "mood": "chill",
+              "score": 0.415,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 6,
+              "title": "Spacewalk Thoughts",
+              "genre": "ambient",
+              "mood": "chill",
+              "score": 0.343,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=1.00": {
+          "top": [
+            {
+              "id": 4,
+              "title": "Library Rain",
+              "genre": "lofi",
+              "mood": "chill",
+              "score": 0.402,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 2,
+              "title": "Midnight Coding",
+              "genre": "lofi",
+              "mood": "chill",
+              "score": 0.239,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 9,
+              "title": "Focus Flow",
+              "genre": "lofi",
+              "mood": "focused",
+              "score": 0.217,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        }
+      }
+    },
+    {
+      "id": "q02",
+      "query": "sad piano",
+      "tests": "synonym map + instrument proxy",
+      "expect": "hit",
+      "parsed": {
+        "genres": [],
+        "moods": [
+          "melancholic"
+        ],
+        "scenes": [],
+        "synonyms": [
+          "sad",
+          "piano"
+        ],
+        "numeric_features": {
+          "valence": 0.2
+        }
+      },
+      "ground_truth": {
+        "acceptable": {
+          "genre": [
+            "classical"
+          ],
+          "mood": [
+            "melancholic"
+          ]
+        },
+        "required": {
+          "genre": [
+            "classical"
+          ]
+        },
+        "supporting": {
+          "energy": [
+            0.0,
+            0.4
+          ],
+          "tempo_bpm": [
+            0,
+            90
+          ]
+        }
+      },
+      "variants": {
+        "original_scorer": {
+          "top": [
+            {
+              "id": 12,
+              "title": "Moonlit Sonata",
+              "genre": "classical",
+              "mood": "melancholic",
+              "score": 2.95,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 15,
+              "title": "Iron Requiem",
+              "genre": "metal",
+              "mood": "angry",
+              "score": 1.0,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 3,
+              "title": "Storm Runner",
+              "genre": "rock",
+              "mood": "intense",
+              "score": 0.72,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.00": {
+          "top": [
+            {
+              "id": 12,
+              "title": "Moonlit Sonata",
+              "genre": "classical",
+              "mood": "melancholic",
+              "score": 0.978,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 18,
+              "title": "Pine Smoke Lullaby",
+              "genre": "folk",
+              "mood": "dreamy",
+              "score": 0.506,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 6,
+              "title": "Spacewalk Thoughts",
+              "genre": "ambient",
+              "mood": "chill",
+              "score": 0.498,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.25": {
+          "top": [
+            {
+              "id": 12,
+              "title": "Moonlit Sonata",
+              "genre": "classical",
+              "mood": "melancholic",
+              "score": 0.848,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 18,
+              "title": "Pine Smoke Lullaby",
+              "genre": "folk",
+              "mood": "dreamy",
+              "score": 0.38,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 6,
+              "title": "Spacewalk Thoughts",
+              "genre": "ambient",
+              "mood": "chill",
+              "score": 0.374,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.50": {
+          "top": [
+            {
+              "id": 12,
+              "title": "Moonlit Sonata",
+              "genre": "classical",
+              "mood": "melancholic",
+              "score": 0.717,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 18,
+              "title": "Pine Smoke Lullaby",
+              "genre": "folk",
+              "mood": "dreamy",
+              "score": 0.253,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 6,
+              "title": "Spacewalk Thoughts",
+              "genre": "ambient",
+              "mood": "chill",
+              "score": 0.249,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.75": {
+          "top": [
+            {
+              "id": 12,
+              "title": "Moonlit Sonata",
+              "genre": "classical",
+              "mood": "melancholic",
+              "score": 0.587,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 18,
+              "title": "Pine Smoke Lullaby",
+              "genre": "folk",
+              "mood": "dreamy",
+              "score": 0.127,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 6,
+              "title": "Spacewalk Thoughts",
+              "genre": "ambient",
+              "mood": "chill",
+              "score": 0.125,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=1.00": {
+          "top": [
+            {
+              "id": 12,
+              "title": "Moonlit Sonata",
+              "genre": "classical",
+              "mood": "melancholic",
+              "score": 0.457,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        }
+      }
+    },
+    {
+      "id": "q03",
+      "query": "dark synthwave for a night drive",
+      "tests": "explicit genre + scene",
+      "expect": "hit",
+      "parsed": {
+        "genres": [
+          "synthwave"
+        ],
+        "moods": [
+          "moody"
+        ],
+        "scenes": [],
+        "synonyms": [
+          "dark",
+          "synthwave",
+          "night",
+          "drive"
+        ],
+        "numeric_features": {
+          "valence": 0.25
+        }
+      },
+      "ground_truth": {
+        "acceptable": {
+          "genre": [
+            "synthwave"
+          ],
+          "mood": [
+            "moody"
+          ]
+        },
+        "required": {
+          "genre": [
+            "synthwave"
+          ]
+        }
+      },
+      "variants": {
+        "original_scorer": {
+          "top": [
+            {
+              "id": 8,
+              "title": "Night Drive Loop",
+              "genre": "synthwave",
+              "mood": "moody",
+              "score": 3.76,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": null
+            },
+            {
+              "id": 12,
+              "title": "Moonlit Sonata",
+              "genre": "classical",
+              "mood": "melancholic",
+              "score": 1.0,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 15,
+              "title": "Iron Requiem",
+              "genre": "metal",
+              "mood": "angry",
+              "score": 0.95,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.00": {
+          "top": [
+            {
+              "id": 8,
+              "title": "Night Drive Loop",
+              "genre": "synthwave",
+              "mood": "moody",
+              "score": 0.94,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": null
+            },
+            {
+              "id": 12,
+              "title": "Moonlit Sonata",
+              "genre": "classical",
+              "mood": "melancholic",
+              "score": 0.25,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 15,
+              "title": "Iron Requiem",
+              "genre": "metal",
+              "mood": "angry",
+              "score": 0.237,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.25": {
+          "top": [
+            {
+              "id": 8,
+              "title": "Night Drive Loop",
+              "genre": "synthwave",
+              "mood": "moody",
+              "score": 0.841,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": null
+            },
+            {
+              "id": 12,
+              "title": "Moonlit Sonata",
+              "genre": "classical",
+              "mood": "melancholic",
+              "score": 0.21,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 15,
+              "title": "Iron Requiem",
+              "genre": "metal",
+              "mood": "angry",
+              "score": 0.206,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.50": {
+          "top": [
+            {
+              "id": 8,
+              "title": "Night Drive Loop",
+              "genre": "synthwave",
+              "mood": "moody",
+              "score": 0.741,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": null
+            },
+            {
+              "id": 15,
+              "title": "Iron Requiem",
+              "genre": "metal",
+              "mood": "angry",
+              "score": 0.174,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 12,
+              "title": "Moonlit Sonata",
+              "genre": "classical",
+              "mood": "melancholic",
+              "score": 0.171,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.75": {
+          "top": [
+            {
+              "id": 8,
+              "title": "Night Drive Loop",
+              "genre": "synthwave",
+              "mood": "moody",
+              "score": 0.642,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": null
+            },
+            {
+              "id": 15,
+              "title": "Iron Requiem",
+              "genre": "metal",
+              "mood": "angry",
+              "score": 0.143,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 12,
+              "title": "Moonlit Sonata",
+              "genre": "classical",
+              "mood": "melancholic",
+              "score": 0.131,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=1.00": {
+          "top": [
+            {
+              "id": 8,
+              "title": "Night Drive Loop",
+              "genre": "synthwave",
+              "mood": "moody",
+              "score": 0.543,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": null
+            },
+            {
+              "id": 15,
+              "title": "Iron Requiem",
+              "genre": "metal",
+              "mood": "angry",
+              "score": 0.111,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 12,
+              "title": "Moonlit Sonata",
+              "genre": "classical",
+              "mood": "melancholic",
+              "score": 0.092,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        }
+      }
+    },
+    {
+      "id": "q04",
+      "query": "romantic date night, slow and smooth",
+      "tests": "mood word + tempo",
+      "expect": "hit",
+      "parsed": {
+        "genres": [],
+        "moods": [
+          "romantic"
+        ],
+        "scenes": [],
+        "synonyms": [
+          "date",
+          "night",
+          "slow",
+          "smooth"
+        ],
+        "numeric_features": {
+          "tempo": 0.2
+        }
+      },
+      "ground_truth": {
+        "acceptable": {
+          "genre": [
+            "r&b"
+          ],
+          "mood": [
+            "romantic"
+          ]
+        },
+        "supporting": {
+          "tempo_bpm": [
+            0,
+            100
+          ]
+        }
+      },
+      "variants": {
+        "original_scorer": {
+          "top": [
+            {
+              "id": 14,
+              "title": "Velvet Hours",
+              "genre": "r&b",
+              "mood": "romantic",
+              "score": 2.0,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.00": {
+          "top": [
+            {
+              "id": 14,
+              "title": "Velvet Hours",
+              "genre": "r&b",
+              "mood": "romantic",
+              "score": 1.0,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.25": {
+          "top": [
+            {
+              "id": 14,
+              "title": "Velvet Hours",
+              "genre": "r&b",
+              "mood": "romantic",
+              "score": 0.899,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 12,
+              "title": "Moonlit Sonata",
+              "genre": "classical",
+              "mood": "melancholic",
+              "score": 0.056,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 2,
+              "title": "Midnight Coding",
+              "genre": "lofi",
+              "mood": "chill",
+              "score": 0.041,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.50": {
+          "top": [
+            {
+              "id": 14,
+              "title": "Velvet Hours",
+              "genre": "r&b",
+              "mood": "romantic",
+              "score": 0.799,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 12,
+              "title": "Moonlit Sonata",
+              "genre": "classical",
+              "mood": "melancholic",
+              "score": 0.111,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 2,
+              "title": "Midnight Coding",
+              "genre": "lofi",
+              "mood": "chill",
+              "score": 0.083,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.75": {
+          "top": [
+            {
+              "id": 14,
+              "title": "Velvet Hours",
+              "genre": "r&b",
+              "mood": "romantic",
+              "score": 0.698,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 12,
+              "title": "Moonlit Sonata",
+              "genre": "classical",
+              "mood": "melancholic",
+              "score": 0.167,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 2,
+              "title": "Midnight Coding",
+              "genre": "lofi",
+              "mood": "chill",
+              "score": 0.124,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=1.00": {
+          "top": [
+            {
+              "id": 14,
+              "title": "Velvet Hours",
+              "genre": "r&b",
+              "mood": "romantic",
+              "score": 0.598,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 12,
+              "title": "Moonlit Sonata",
+              "genre": "classical",
+              "mood": "melancholic",
+              "score": 0.223,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 2,
+              "title": "Midnight Coding",
+              "genre": "lofi",
+              "mood": "chill",
+              "score": 0.165,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        }
+      }
+    },
+    {
+      "id": "q05",
+      "query": "aggressive heavy music",
+      "tests": "synonym map",
+      "expect": "hit",
+      "parsed": {
+        "genres": [],
+        "moods": [
+          "angry"
+        ],
+        "scenes": [],
+        "synonyms": [
+          "aggressive",
+          "heavy"
+        ],
+        "numeric_features": {}
+      },
+      "ground_truth": {
+        "acceptable": {
+          "genre": [
+            "metal"
+          ],
+          "mood": [
+            "angry"
+          ]
+        },
+        "supporting": {
+          "energy": [
+            0.85,
+            1.0
+          ]
+        }
+      },
+      "variants": {
+        "original_scorer": {
+          "top": [
+            {
+              "id": 15,
+              "title": "Iron Requiem",
+              "genre": "metal",
+              "mood": "angry",
+              "score": 2.0,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.00": {
+          "top": [
+            {
+              "id": 15,
+              "title": "Iron Requiem",
+              "genre": "metal",
+              "mood": "angry",
+              "score": 0.99,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 17,
+              "title": "Pulse Horizon",
+              "genre": "edm",
+              "mood": "euphoric",
+              "score": 0.5,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 5,
+              "title": "Gym Hero",
+              "genre": "pop",
+              "mood": "intense",
+              "score": 0.49,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.25": {
+          "top": [
+            {
+              "id": 15,
+              "title": "Iron Requiem",
+              "genre": "metal",
+              "mood": "angry",
+              "score": 0.854,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 3,
+              "title": "Storm Runner",
+              "genre": "rock",
+              "mood": "intense",
+              "score": 0.385,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 17,
+              "title": "Pulse Horizon",
+              "genre": "edm",
+              "mood": "euphoric",
+              "score": 0.375,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.50": {
+          "top": [
+            {
+              "id": 15,
+              "title": "Iron Requiem",
+              "genre": "metal",
+              "mood": "angry",
+              "score": 0.718,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 3,
+              "title": "Storm Runner",
+              "genre": "rock",
+              "mood": "intense",
+              "score": 0.291,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 17,
+              "title": "Pulse Horizon",
+              "genre": "edm",
+              "mood": "euphoric",
+              "score": 0.25,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.75": {
+          "top": [
+            {
+              "id": 15,
+              "title": "Iron Requiem",
+              "genre": "metal",
+              "mood": "angry",
+              "score": 0.582,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 3,
+              "title": "Storm Runner",
+              "genre": "rock",
+              "mood": "intense",
+              "score": 0.196,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 17,
+              "title": "Pulse Horizon",
+              "genre": "edm",
+              "mood": "euphoric",
+              "score": 0.125,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=1.00": {
+          "top": [
+            {
+              "id": 15,
+              "title": "Iron Requiem",
+              "genre": "metal",
+              "mood": "angry",
+              "score": 0.445,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 3,
+              "title": "Storm Runner",
+              "genre": "rock",
+              "mood": "intense",
+              "score": 0.102,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        }
+      }
+    },
+    {
+      "id": "q06",
+      "query": "high energy workout music for the gym",
+      "tests": "activity + energy",
+      "expect": "hit",
+      "parsed": {
+        "genres": [],
+        "moods": [],
+        "scenes": [],
+        "synonyms": [
+          "high",
+          "energy",
+          "workout",
+          "gym"
+        ],
+        "numeric_features": {}
+      },
+      "ground_truth": {
+        "acceptable": {
+          "mood": [
+            "intense",
+            "euphoric",
+            "angry"
+          ]
+        },
+        "supporting": {
+          "energy": [
+            0.85,
+            1.0
+          ]
+        }
+      },
+      "variants": {
+        "original_scorer": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": false
+        },
+        "w=0.00": {
+          "top": [
+            {
+              "id": 5,
+              "title": "Gym Hero",
+              "genre": "pop",
+              "mood": "intense",
+              "score": 0.44,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 3,
+              "title": "Storm Runner",
+              "genre": "rock",
+              "mood": "intense",
+              "score": 0.25,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 8,
+              "title": "Night Drive Loop",
+              "genre": "synthwave",
+              "mood": "moody",
+              "score": 0.085,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.25": {
+          "top": [
+            {
+              "id": 5,
+              "title": "Gym Hero",
+              "genre": "pop",
+              "mood": "intense",
+              "score": 0.44,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 3,
+              "title": "Storm Runner",
+              "genre": "rock",
+              "mood": "intense",
+              "score": 0.25,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 8,
+              "title": "Night Drive Loop",
+              "genre": "synthwave",
+              "mood": "moody",
+              "score": 0.085,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.50": {
+          "top": [
+            {
+              "id": 5,
+              "title": "Gym Hero",
+              "genre": "pop",
+              "mood": "intense",
+              "score": 0.44,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 3,
+              "title": "Storm Runner",
+              "genre": "rock",
+              "mood": "intense",
+              "score": 0.25,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 8,
+              "title": "Night Drive Loop",
+              "genre": "synthwave",
+              "mood": "moody",
+              "score": 0.085,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.75": {
+          "top": [
+            {
+              "id": 5,
+              "title": "Gym Hero",
+              "genre": "pop",
+              "mood": "intense",
+              "score": 0.44,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 3,
+              "title": "Storm Runner",
+              "genre": "rock",
+              "mood": "intense",
+              "score": 0.25,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 8,
+              "title": "Night Drive Loop",
+              "genre": "synthwave",
+              "mood": "moody",
+              "score": 0.085,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=1.00": {
+          "top": [
+            {
+              "id": 5,
+              "title": "Gym Hero",
+              "genre": "pop",
+              "mood": "intense",
+              "score": 0.44,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 3,
+              "title": "Storm Runner",
+              "genre": "rock",
+              "mood": "intense",
+              "score": 0.25,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 8,
+              "title": "Night Drive Loop",
+              "genre": "synthwave",
+              "mood": "moody",
+              "score": 0.085,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        }
+      }
+    },
+    {
+      "id": "q07",
+      "query": "something to pump me up before a race",
+      "tests": "paraphrase: energy inference",
+      "expect": "hit",
+      "parsed": {
+        "genres": [],
+        "moods": [],
+        "scenes": [],
+        "synonyms": [
+          "pump",
+          "before",
+          "race"
+        ],
+        "numeric_features": {}
+      },
+      "ground_truth": {
+        "acceptable": {
+          "mood": [
+            "intense",
+            "euphoric"
+          ]
+        },
+        "supporting": {
+          "energy": [
+            0.8,
+            1.0
+          ]
+        }
+      },
+      "variants": {
+        "original_scorer": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": false
+        },
+        "w=0.00": {
+          "top": [
+            {
+              "id": 5,
+              "title": "Gym Hero",
+              "genre": "pop",
+              "mood": "intense",
+              "score": 0.3,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.25": {
+          "top": [
+            {
+              "id": 5,
+              "title": "Gym Hero",
+              "genre": "pop",
+              "mood": "intense",
+              "score": 0.3,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.50": {
+          "top": [
+            {
+              "id": 5,
+              "title": "Gym Hero",
+              "genre": "pop",
+              "mood": "intense",
+              "score": 0.3,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.75": {
+          "top": [
+            {
+              "id": 5,
+              "title": "Gym Hero",
+              "genre": "pop",
+              "mood": "intense",
+              "score": 0.3,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=1.00": {
+          "top": [
+            {
+              "id": 5,
+              "title": "Gym Hero",
+              "genre": "pop",
+              "mood": "intense",
+              "score": 0.3,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        }
+      }
+    },
+    {
+      "id": "q08",
+      "query": "music for when I'm heartbroken",
+      "tests": "paraphrase: emotional inference",
+      "expect": "hit",
+      "parsed": {
+        "genres": [],
+        "moods": [],
+        "scenes": [],
+        "synonyms": [
+          "when",
+          "m",
+          "heartbroken"
+        ],
+        "numeric_features": {}
+      },
+      "ground_truth": {
+        "acceptable": {
+          "mood": [
+            "melancholic"
+          ]
+        },
+        "supporting": {
+          "energy": [
+            0.0,
+            0.5
+          ],
+          "valence": [
+            0.0,
+            0.5
+          ]
+        }
+      },
+      "variants": {
+        "original_scorer": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": false
+        },
+        "w=0.00": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": true
+        },
+        "w=0.25": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": true
+        },
+        "w=0.50": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": true
+        },
+        "w=0.75": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": true
+        },
+        "w=1.00": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": true
+        }
+      }
+    },
+    {
+      "id": "q09",
+      "query": "something unobtrusive to keep me company while I work through a long programming session",
+      "tests": "paraphrase: context inference",
+      "expect": "hit",
+      "parsed": {
+        "genres": [],
+        "moods": [],
+        "scenes": [],
+        "synonyms": [
+          "unobtrusive",
+          "keep",
+          "company",
+          "while",
+          "work",
+          "through",
+          "long",
+          "programming",
+          "session"
+        ],
+        "numeric_features": {}
+      },
+      "ground_truth": {
+        "acceptable": {
+          "genre": [
+            "lofi"
+          ],
+          "mood": [
+            "focused",
+            "chill"
+          ]
+        },
+        "supporting": {
+          "energy": [
+            0.0,
+            0.5
+          ]
+        }
+      },
+      "variants": {
+        "original_scorer": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": false
+        },
+        "w=0.00": {
+          "top": [
+            {
+              "id": 9,
+              "title": "Focus Flow",
+              "genre": "lofi",
+              "mood": "focused",
+              "score": 0.336,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.25": {
+          "top": [
+            {
+              "id": 9,
+              "title": "Focus Flow",
+              "genre": "lofi",
+              "mood": "focused",
+              "score": 0.336,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.50": {
+          "top": [
+            {
+              "id": 9,
+              "title": "Focus Flow",
+              "genre": "lofi",
+              "mood": "focused",
+              "score": 0.336,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.75": {
+          "top": [
+            {
+              "id": 9,
+              "title": "Focus Flow",
+              "genre": "lofi",
+              "mood": "focused",
+              "score": 0.336,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=1.00": {
+          "top": [
+            {
+              "id": 9,
+              "title": "Focus Flow",
+              "genre": "lofi",
+              "mood": "focused",
+              "score": 0.336,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        }
+      }
+    },
+    {
+      "id": "q10",
+      "query": "songs that make a long drive through the city feel like a movie",
+      "tests": "paraphrase: cinematic scene inference",
+      "expect": "hit",
+      "parsed": {
+        "genres": [],
+        "moods": [],
+        "scenes": [],
+        "synonyms": [
+          "make",
+          "long",
+          "drive",
+          "through",
+          "city",
+          "feel",
+          "movie"
+        ],
+        "numeric_features": {}
+      },
+      "ground_truth": {
+        "acceptable": {
+          "genre": [
+            "synthwave"
+          ],
+          "mood": [
+            "moody"
+          ]
+        }
+      },
+      "variants": {
+        "original_scorer": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": false
+        },
+        "w=0.00": {
+          "top": [
+            {
+              "id": 8,
+              "title": "Night Drive Loop",
+              "genre": "synthwave",
+              "mood": "moody",
+              "score": 0.433,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": null
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.166,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.25": {
+          "top": [
+            {
+              "id": 8,
+              "title": "Night Drive Loop",
+              "genre": "synthwave",
+              "mood": "moody",
+              "score": 0.433,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": null
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.166,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.50": {
+          "top": [
+            {
+              "id": 8,
+              "title": "Night Drive Loop",
+              "genre": "synthwave",
+              "mood": "moody",
+              "score": 0.433,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": null
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.166,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.75": {
+          "top": [
+            {
+              "id": 8,
+              "title": "Night Drive Loop",
+              "genre": "synthwave",
+              "mood": "moody",
+              "score": 0.433,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": null
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.166,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=1.00": {
+          "top": [
+            {
+              "id": 8,
+              "title": "Night Drive Loop",
+              "genre": "synthwave",
+              "mood": "moody",
+              "score": 0.433,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": null
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.166,
+              "has_signal": true,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        }
+      }
+    },
+    {
+      "id": "q11",
+      "query": "something cheerful for a beach day",
+      "tests": "mixed: mood + scene",
+      "expect": "hit",
+      "parsed": {
+        "genres": [],
+        "moods": [
+          "happy"
+        ],
+        "scenes": [],
+        "synonyms": [
+          "cheerful",
+          "beach",
+          "day"
+        ],
+        "numeric_features": {
+          "valence": 0.85
+        }
+      },
+      "ground_truth": {
+        "acceptable": {
+          "genre": [
+            "reggae"
+          ],
+          "mood": [
+            "happy",
+            "uplifting"
+          ]
+        },
+        "supporting": {
+          "valence": [
+            0.7,
+            1.0
+          ]
+        }
+      },
+      "variants": {
+        "original_scorer": {
+          "top": [
+            {
+              "id": 1,
+              "title": "Sunrise City",
+              "genre": "pop",
+              "mood": "happy",
+              "score": 2.99,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 10,
+              "title": "Rooftop Lights",
+              "genre": "indie pop",
+              "mood": "happy",
+              "score": 2.96,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 16,
+              "title": "Island Breeze",
+              "genre": "reggae",
+              "mood": "uplifting",
+              "score": 0.97,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.00": {
+          "top": [
+            {
+              "id": 1,
+              "title": "Sunrise City",
+              "genre": "pop",
+              "mood": "happy",
+              "score": 0.997,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 10,
+              "title": "Rooftop Lights",
+              "genre": "indie pop",
+              "mood": "happy",
+              "score": 0.987,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 16,
+              "title": "Island Breeze",
+              "genre": "reggae",
+              "mood": "uplifting",
+              "score": 0.323,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.25": {
+          "top": [
+            {
+              "id": 1,
+              "title": "Sunrise City",
+              "genre": "pop",
+              "mood": "happy",
+              "score": 0.823,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 10,
+              "title": "Rooftop Lights",
+              "genre": "indie pop",
+              "mood": "happy",
+              "score": 0.814,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 16,
+              "title": "Island Breeze",
+              "genre": "reggae",
+              "mood": "uplifting",
+              "score": 0.276,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.50": {
+          "top": [
+            {
+              "id": 1,
+              "title": "Sunrise City",
+              "genre": "pop",
+              "mood": "happy",
+              "score": 0.65,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 10,
+              "title": "Rooftop Lights",
+              "genre": "indie pop",
+              "mood": "happy",
+              "score": 0.642,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 16,
+              "title": "Island Breeze",
+              "genre": "reggae",
+              "mood": "uplifting",
+              "score": 0.23,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=0.75": {
+          "top": [
+            {
+              "id": 1,
+              "title": "Sunrise City",
+              "genre": "pop",
+              "mood": "happy",
+              "score": 0.477,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 10,
+              "title": "Rooftop Lights",
+              "genre": "indie pop",
+              "mood": "happy",
+              "score": 0.47,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 16,
+              "title": "Island Breeze",
+              "genre": "reggae",
+              "mood": "uplifting",
+              "score": 0.183,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        },
+        "w=1.00": {
+          "top": [
+            {
+              "id": 1,
+              "title": "Sunrise City",
+              "genre": "pop",
+              "mood": "happy",
+              "score": 0.304,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 10,
+              "title": "Rooftop Lights",
+              "genre": "indie pop",
+              "mood": "happy",
+              "score": 0.297,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            },
+            {
+              "id": 16,
+              "title": "Island Breeze",
+              "genre": "reggae",
+              "mood": "uplifting",
+              "score": 0.136,
+              "has_signal": true,
+              "hit": true,
+              "supporting_ok": true
+            }
+          ],
+          "first_hit_rank": 1,
+          "no_signal": false
+        }
+      }
+    },
+    {
+      "id": "q12",
+      "query": "music to fall asleep to",
+      "tests": "paraphrase: no mood word",
+      "expect": "hit",
+      "parsed": {
+        "genres": [],
+        "moods": [],
+        "scenes": [],
+        "synonyms": [
+          "fall",
+          "asleep"
+        ],
+        "numeric_features": {}
+      },
+      "ground_truth": {
+        "acceptable": {
+          "genre": [
+            "ambient",
+            "folk"
+          ],
+          "mood": [
+            "dreamy",
+            "chill",
+            "relaxed"
+          ]
+        },
+        "supporting": {
+          "energy": [
+            0.0,
+            0.4
+          ]
+        }
+      },
+      "variants": {
+        "original_scorer": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": false
+        },
+        "w=0.00": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": true
+        },
+        "w=0.25": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": true
+        },
+        "w=0.50": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": true
+        },
+        "w=0.75": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": true
+        },
+        "w=1.00": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": true
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": false
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": true
+        }
+      }
+    },
+    {
+      "id": "n01",
+      "query": "asdfgh qwerty",
+      "tests": "negative: gibberish",
+      "expect": "no_match",
+      "parsed": {
+        "genres": [],
+        "moods": [],
+        "scenes": [],
+        "synonyms": [
+          "asdfgh",
+          "qwerty"
+        ],
+        "numeric_features": {}
+      },
+      "ground_truth": {},
+      "variants": {
+        "original_scorer": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": false
+        },
+        "w=0.00": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": true
+        },
+        "w=0.25": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": true
+        },
+        "w=0.50": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": true
+        },
+        "w=0.75": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": true
+        },
+        "w=1.00": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": true
+        }
+      }
+    },
+    {
+      "id": "n02",
+      "query": "zxqv blorf 9182",
+      "tests": "negative: gibberish",
+      "expect": "no_match",
+      "parsed": {
+        "genres": [],
+        "moods": [],
+        "scenes": [],
+        "synonyms": [
+          "zxqv",
+          "blorf",
+          "9182"
+        ],
+        "numeric_features": {}
+      },
+      "ground_truth": {},
+      "variants": {
+        "original_scorer": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": false
+        },
+        "w=0.00": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": true
+        },
+        "w=0.25": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": true
+        },
+        "w=0.50": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": true
+        },
+        "w=0.75": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": true
+        },
+        "w=1.00": {
+          "top": [
+            {
+              "id": 7,
+              "title": "Coffee Shop Stories",
+              "genre": "jazz",
+              "mood": "relaxed",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 11,
+              "title": "Concrete Crown",
+              "genre": "hip hop",
+              "mood": "confident",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            },
+            {
+              "id": 13,
+              "title": "Dusty Back Road",
+              "genre": "country",
+              "mood": "nostalgic",
+              "score": 0.0,
+              "has_signal": false,
+              "hit": false,
+              "supporting_ok": null
+            }
+          ],
+          "first_hit_rank": null,
+          "no_signal": true
+        }
+      }
+    }
+  ]
+}

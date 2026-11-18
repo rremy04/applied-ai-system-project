@@ -1,0 +1,8 @@
+{
+  "_note": "Frozen regression floor for the OFFLINE evaluation (tests/eval_rag.py). Set 2026-11-15 after the first corrected baseline: hybrid (w=0.50) top-1 = top-3 = 10/12 = 83%, original scorer 6/12 = 50%, gibberish no_match 2/2. Floors sit one query (about 8 points) below baseline so harmless tweaks pass but a real retrieval regression fails. Do NOT lower these to make a failing change pass: fix the change, or record a deliberate decision in the model card. This is a project regression guard, not evidence of general recommendation quality (12 relevance queries).",
+  "hybrid_top1_min": 0.75,
+  "hybrid_top3_min": 0.75,
+  "hybrid_negative_accuracy_min": 1.0,
+  "pipeline_negative_accuracy_min": 1.0,
+  "hybrid_must_beat_original_scorer_by_at_least": 0.2
+}

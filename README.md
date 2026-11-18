@@ -10,8 +10,14 @@ Your goal is to:
 - Design a scoring rule that turns that data into recommendations
 - Evaluate what your system gets right and wrong
 - Reflect on how this mirrors real world AI recommenders
+å
+This version keeps the original content-based recommender (genre, mood and numeric features scored with fixed weights) and adds a retrieval-augmented layer on top. You describe what you want in plain English, the system retrieves matching songs from the catalog, and an LLM (Google Gemini by default) explains the picks using only those songs. Guardrails, logging and an evaluation harness are included, and everything still works without an API key by falling back to the scoring engine. See [RAG Extension](#rag-extension-ask-in-plain-english).
 
-Replace this paragraph with your own summary of what your version does.
+---
+
+## Original Project
+
+This project extends my Module 3 project, **Music Recommender Simulation** (the starter that asked for a content-based recommender). Its goal was to show how apps like Spotify predict what a listener will like, by scoring songs against a taste profile with a weighted rule set. It could score an 18-song catalog on genre, mood and numeric features, return the top five songs with reasons for a fixed profile, and surface bias such as filter bubbles.
 
 ---
 
@@ -51,44 +57,267 @@ Mood outweighs genre because 14 of 18 genres appear once, so a big genre bonus w
 
 ---
 
+## RAG Extension: Ask in Plain English
+
+The weighted scorer above is still the engine, but you can now describe what you want ("mellow music for studying on a rainy night") instead of filling in a profile. A request goes through a retrieve-then-generate pipeline:
+
+1. **Parse** (`src/query_parser.py`): the LLM turns the request into a structured query (genres, moods, scenes, related words, numeric targets). With no API key, or if the call fails, a keyword parser produces the same shape.
+2. **Retrieve** (`src/retriever.py`): TF-IDF text similarity over each song's description, blended 50/50 with the weighted scorer after normalizing synonyms (for example "sad" becomes "melancholic"). A song whose mood clashes with the request has its score halved.
+3. **Generate** (`src/generator.py`): the LLM writes the recommendation from the retrieved songs only and must cite them by ID.
+4. **Guard** (`src/pipeline.py`): invalid song IDs are dropped and logged. If nothing valid remains, it retries once, then falls back to the scorer's own explanations. A request that matches nothing returns "no match" without calling the model. The pipeline never raises, and every model call has a timeout.
+
+The full flow is in [diagrams/architecture.mmd](diagrams/architecture.mmd) (GitHub renders Mermaid files).
+
+Every answer says where it came from: `llm`, `llm_retry`, `fallback`, `no_match` or `error`. This is real output from a run with no API key, so it shows the scorer fallback:
+
+```
+Note: no API key was found (set GEMINI_API_KEY or ANTHROPIC_API_KEY, see .env.example), so answers come from the scoring engine only, without AI explanations.
+The AI explanation was unavailable, so these are the top matches from the scoring engine.
+
+1. Moonlit Sonata by Clara Wren
+   mood matches: melancholic (+2.0); energy 0.22 vs target 0.25 (+1.94); valence 0.25 vs target 0.20 (+0.95); text match (0.46): melancholic, piano, sad
+2. Pine Smoke Lullaby by Wren & Willow
+   energy 0.30 vs target 0.25 (+1.90); valence 0.57 vs target 0.20 (+0.63)
+3. Spacewalk Thoughts by Orbit Bloom
+   energy 0.28 vs target 0.25 (+1.94); valence 0.65 vs target 0.20 (+0.55)
+
+[scorer fallback: no AI explanation]
+Guardrail events:
+  - no API client: using scorer fallback
+```
+
+### Evaluation results (offline)
+
+`python -m tests.eval_rag` runs 14 queries (12 relevance, 2 gibberish) with ground truth written before looking at results. Offline means the keyword parser and no API. Full per-query output is in [eval_results/offline.md](eval_results/offline.md).
+
+| Variant | Top-1 | Top-3 | Gibberish refused |
+|---|---|---|---|
+| Original scorer alone | 50% | 50% | 0% |
+| Structured only (scorer through the retrieval adapter) | 83% | 83% | 100% |
+| Hybrid, text weight 0.25 / 0.50 / 0.75 | 83% | 83% | 100% |
+| Text only (TF-IDF) | 83% | 83% | 100% |
+
+The gain over the original scorer comes from synonym normalization and compatibility scoring. Text search on top added nothing measurable on this 18-song catalog, and every text weight tied. With 12 relevance queries these numbers are indicative only. The full online evaluation (real LLM: guardrail rates and consistency across repeated runs) has **not been run yet**; so far only a handful of real calls have been checked. See section 9 of the [model card](model_card.md) for limitations and bias.
+
+---
+
+## Architecture Overview
+
+The system is a retrieve-then-generate pipeline with a fallback. The flow in [diagrams/architecture.mmd](diagrams/architecture.mmd) runs left to right:
+
+- **Input:** a request from the CLI (`python -m src.main`).
+- **Parse:** the LLM turns the request into structured fields, or a keyword parser does if no key is set.
+- **Retrieve:** the catalog is scored with TF-IDF text similarity and the weighted scorer, then blended.
+- **Generate and guard:** the LLM writes an answer from the retrieved songs only. Invalid song IDs are dropped, with one retry. If that fails, the answer falls back to the scorer's own reasons.
+- **Output:** the answer, its source (`llm`, `llm_retry`, `fallback`, `no_match`), and any guardrail events.
+
+Humans check the system in two places: a person reviews sampled answers and the log, and the evaluation harness (`tests/eval_rag.py`) reports results before anything changes.
+
+---
+
+## Sample Interactions
+
+Three real inputs and outputs, copied from the app. The first two came from the Gemini model; the third is the guardrail for a request that matches nothing.
+
+**1. Input:** `sad piano` (Gemini answer, first run)
+
+```
+Here is the best match for your request for sad piano music, selected based on mood, acousticness, and style.
+
+1. Moonlit Sonata by Clara Wren
+   This song perfectly fits your request with a melancholic mood, high acousticness, low valence, and explicit text matches for sad piano music.
+
+[answered by the AI model]
+```
+
+**2. Input:** `study music that helps me focus` (interactive mode, run from my terminal)
+
+```
+Here are the top lofi tracks from the catalog designed for studying and maintaining focus.
+
+1. Focus Flow by LoRoom
+   This lofi track features a focused mood and a text match for concentration and study, making it ideal for focus.
+2. Midnight Coding by LoRoom
+   It offers a chill lofi vibe with a tempo and acousticness profile well-suited for background study music.
+3. Library Rain by Paper Lanterns
+   With a low energy level, high acousticness, and lofi genre classification, this track provides a calming atmosphere for studying.
+
+[answered by the AI model]
+```
+
+Across five repeat runs of this request, Focus Flow was the top pick every time, but the other two picks changed. Two runs needed a retry and one fell back to the scorer, because of the free-tier quota (see Testing Summary).
+
+**3. Input:** `asdfgh qwerty` (gibberish: the guardrail refuses to guess)
+
+```
+I couldn't find anything in the catalog that matches that. Try a mood, an activity, or a genre.
+
+[no match]
+Guardrail events:
+  - no retrieval signal: nothing in the catalog matched
+```
+
+---
+
+## Design Decisions and Trade-offs
+
+- **TF-IDF plus the weighted scorer, not embeddings.** TF-IDF needs no extra model, runs offline, and is reproducible. The trade-off is that it only matches words, so I added a synonym table ("sad" to "melancholic") and hand-written notes to each song. Embeddings would be the next step on a larger catalog.
+- **Equal blend of text and structured scores (0.5 / 0.5).** I measured text weights from 0 to 1 and they tied on this test set, so I kept the simplest choice. I did not claim it is optimal.
+- **A mood clash halves a song's score.** This keeps "sad piano" from being answered with a metal track that happens to match on valence. The cost is a stronger filter bubble, which the model card covers.
+- **The model may only recommend retrieved songs.** Invented IDs are dropped and logged. If nothing valid remains, the app retries once, then falls back to the scorer's own reasons. I chose drop-and-continue over failing a whole answer on one bad ID.
+- **No retry on a quota error.** Retrying right away cannot succeed and only uses more of the daily allowance.
+- **Gemini as the default provider.** I first recommended Anthropic, but Anthropic's API needs paid credits, and the free Gemini tier let me build and test the system without cost. Claude still works through the same code path, although I have not run that path against the real API.
+- **Thinking turned off for Gemini.** With the default settings the model used most of its output budget on hidden reasoning and cut off its JSON answer. The adapter also pins the v1beta API version.
+- **Every fallback is visible.** A failed parse or generation shows up in the output and in `logs/app.log`, so a fallback never looks like a normal answer.
+- **No minimum-score cutoff yet.** Weak but nonzero matches still reach the model. I deferred this until the evaluation shows it is needed.
+
+---
+
+## Testing Summary
+
+**Automated tests:** 129 pass and 3 are skipped by default because they call the real API (run with `RUN_API_TESTS=1`). The suite covers scoring, synonyms, compatibility, the parser, the retriever, the generator, the guardrails and retry, logging, the CLI, the Gemini adapter, and the evaluation harness itself. The suite runs in about two seconds and makes no API calls.
+
+**Offline evaluation (keyword parser, no API):** on 12 relevance queries plus 2 gibberish queries, the hybrid retriever reached 83% top-1 and top-3, compared with 50% for the original scorer. Both gibberish queries were refused. The sample is small, so these numbers are indicative only.
+
+**What worked:** synonym mapping and mood-compatibility scoring fixed the "sad piano" failure. Gibberish is refused. In the real runs I checked by hand, every cited song was a retrieved one and no ID was dropped. The drop-and-retry path is covered by tests, not by a real failure.
+
+**What didn't:**
+- Paraphrases with no keyword overlap ("music for when I'm heartbroken", "music to fall asleep to") get no signal from the keyword parser. The real model handles these better, but that is not measured yet.
+- The first version of the evaluation scored 92%. A bug let zero-score results count as hits, and I fixed it. The corrected figure is 83%.
+- The full real-model evaluation (guardrail rates and consistency across repeated runs) has not been run. The free-tier quota of 20 requests per day for that model blocks it, and the harness now reports quota-limited runs separately rather than counting them as failures.
+
+**Real-model checks so far:** three integration tests pass against the real API, and the manual runs above are real output.
+
+---
+
 ## Getting Started
+
+Developed and tested on Python 3.13.7. Run every command from the project folder (the one that contains `src/` and `data/`).
 
 ### Setup
 
-1. Create a virtual environment (optional but recommended):
+1. Create and activate a virtual environment:
 
    ```bash
    python -m venv .venv
    source .venv/bin/activate      # Mac or Linux
    .venv\Scripts\activate         # Windows
+   ```
 
-2. Install dependencies
+2. Install the pinned dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. *(Optional)* Add an API key to enable the AI features (Google Gemini by default; Anthropic also works). Without one, everything still runs, but answers come from the scoring engine with no AI explanations.
+
+   ```bash
+   cp .env.example .env           # then edit .env and set GEMINI_API_KEY
+   ```
+
+   `.env` is git-ignored. Never put a real key in `.env.example`, which is meant to be committed. You can also set `LLM_PROVIDER` (`gemini` or `anthropic`), `LLM_MODEL` (default `gemini-3.5-flash`) and `LLM_TIMEOUT_SECONDS` (default 30) there.
+
+### Running the app
+
+| Command | What it does |
+|---|---|
+| `python -m src.main` | Interactive: type a request, get an answer. Press Enter on a blank line, or type `quit`, to exit. |
+| `python -m src.main --query "sad piano"` | Answer one request and exit. |
+| `python -m src.main --demo` | The original fixed-profile demo (scorer only, no API needed). |
+
+Add `--debug` to see the parsed query and each song's retrieval scores, or `--verbose` to show INFO logs on the console. Logs always go to `logs/app.log`.
+
+### Running tests
 
 ```bash
-pip install -r requirements.txt
+python -m pytest
 ```
 
-3. Run the app:
+This runs the unit tests, the evaluation-harness tests and a regression check that the offline evaluation stays above the frozen floors in `tests/eval_thresholds.json`. A few tests are skipped by default because they call the real LLM API. To run them:
 
 ```bash
-python -m src.main
+RUN_API_TESTS=1 python -m pytest tests/test_llm_integration.py -v     # needs a key in .env
 ```
 
-### Running Tests
-
-Run the starter tests with:
+### Running the evaluation
 
 ```bash
-pytest
+python -m tests.eval_rag                  # offline: no API, reproducible
+python -m tests.eval_rag --online --runs 3   # real LLM; makes roughly 100 small API calls
 ```
 
-You can add more tests in `tests/test_recommender.py`.
+Both write a Markdown and a JSON report to `eval_results/`.
+
+### Troubleshooting
+
+- `ModuleNotFoundError: No module named 'src'`: run from the project folder and use `python -m ...` as shown above.
+- "no API key was found": expected without a key. Add one as in step 3 to get AI explanations.
+- Slow or failing answers: lower or raise `LLM_TIMEOUT_SECONDS`. After one retry the app falls back to the scorer, and `logs/app.log` records why.
+- `cannot import name 'genai'` or "an API key is set, but the AI client could not start": you are running a different Python from the project's. If Conda is active (`(base)` in your prompt), use `.venv/bin/python -m ...` for every command, or deactivate Conda first.
+
+---
+
+## Reproducible Execution Evidence
+
+Output from the commands below, run from the project folder with `.venv/bin/python` on macOS, Python 3.13.7. Your output will differ slightly in timestamps and in the live-model answers.
+
+**1. One request (no match, guardrail refusal)**
+
+```bash
+.venv/bin/python -m src.main --query "asdfgh qwerty"
+```
+
+```text
+AI explanations from gemini-3.5-flash.
+WARNING LLM parse failed (ServerError: 503 UNAVAILABLE ...); using heuristic parser
+WARNING guardrail: no retrieval signal: nothing in the catalog matched
+I couldn't find anything in the catalog that matches that. Try a mood, an activity, or a genre.
+
+[no match]
+Guardrail events:
+  - parse fell back to keyword parser: ServerError: 503 UNAVAILABLE ...
+  - no retrieval signal: nothing in the catalog matched
+```
+
+The 503 came from a live Gemini call that was overloaded at the time. The app fell back to the keyword parser and still refused. Without an API key, the same request prints `no API key was found` and then the same refusal.
+
+**2. Automated tests**
+
+```bash
+.venv/bin/python -m pytest
+```
+
+```text
+collected 132 items
+...
+================ 129 passed, 3 skipped in 2.45s =================
+```
+
+The 3 skipped tests call the real API and run only with `RUN_API_TESTS=1`.
+
+**3. Offline evaluation**
+
+```bash
+.venv/bin/python -m tests.eval_rag
+```
+
+```text
+| Variant | Top-1 | Top-3 | Negative accuracy |
+|---|---|---|---|
+| Original scorer | 50% | 50% | 0% |
+| Hybrid, text weight 0.50 (default) | 83% | 83% | 100% |
+Full pipeline (offline): gibberish handled as no_match: 100%
+Finished. Wrote: eval_results/offline.md, eval_results/offline.json
+```
+
+The full per-query table is in [eval_results/offline.md](eval_results/offline.md). It includes the two queries that miss (`music for when I'm heartbroken`, `music to fall asleep to`).
 
 ---
 
 ## Sample Recommendation Output
 
-Output for the default pop/happy profile (`python -m src.main`):
+Sample output for a pop/happy profile, from an earlier single-profile version of the scoring demo (`python -m src.main --demo` now prints all seven profiles shown below):
 
 ```
 Loaded songs: 18
@@ -133,7 +362,7 @@ Top recommendations
 
 ## System Evaluation: Profile Test Output
 
-All runs use `python -m src.main` on the 18-song catalog. The first three profiles are normal users; the last four are adversarial/edge cases designed to trick the scoring.
+All runs use `python -m src.main --demo` on the 18-song catalog. The first three profiles are normal users; the last four are adversarial/edge cases designed to trick the scoring.
 
 ```
 Profile: High-Energy Pop
@@ -508,14 +737,9 @@ You will go deeper on this in your model card.
 
 ## Reflection
 
-Read and complete `model_card.md`:
+The main lesson was that a recommender's behavior comes from its rules, and a small rule change can alter results a lot. Adding retrieval and a guarded LLM step made the system more useful, but also made failures harder to see, so I added logging, tests and an evaluation harness to catch them.
 
-[**Model Card**](model_card.md)
-
-Write 1 to 2 paragraphs here about what you learned:
-
-- about how recommenders turn data into predictions
-- about where bias or unfairness could show up in systems like this
+The graded responsible-AI reflection (limitations, misuse, surprises during testing, and how I worked with AI) is in [model_card.md](model_card.md), sections 9 to 11.
 
 
 

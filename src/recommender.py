@@ -1,6 +1,6 @@
 import csv
 from typing import List, Dict, Tuple, Optional
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 
 @dataclass
 class Song:
@@ -38,16 +38,66 @@ class Recommender:
     def __init__(self, songs: List[Song]):
         self.songs = songs
 
+    def _prefs(self, user: UserProfile) -> Dict:
+        """Translate a UserProfile into the dict shape score_song expects."""
+        return {
+            "genre": user.favorite_genre,
+            "mood": user.favorite_mood,
+            "energy": user.target_energy,
+            "acousticness": 0.8 if user.likes_acoustic else 0.2,
+        }
+
     def recommend(self, user: UserProfile, k: int = 5) -> List[Song]:
-        # TODO: Implement recommendation logic
-        return self.songs[:k]
+        """Return the top k songs for this user, best first (ties break by title)."""
+        prefs = self._prefs(user)
+        ranked = sorted(
+            self.songs,
+            key=lambda s: (-score_song(prefs, asdict(s))[0], s.title),
+        )
+        return ranked[:k]
 
     def explain_recommendation(self, user: UserProfile, song: Song) -> str:
-        # TODO: Implement explanation logic
-        return "Explanation placeholder"
+        """Explain why a song scored the way it did, using score_song's reasons."""
+        _, reasons = score_song(self._prefs(user), asdict(song))
+        return "; ".join(reasons) or "no strong matches"
+
+def build_description(song: Dict) -> str:
+    """
+    Build the text the retriever searches over (hybrid vocabulary):
+    words generated from the song's numbers, plus the hand-written `notes` column.
+    """
+    words = [song["genre"], song["mood"]]
+
+    energy = song["energy"]
+    words.append("low energy" if energy < 0.35 else "high energy" if energy > 0.65 else "medium energy")
+
+    if song["valence"] >= 0.7:
+        words.append("upbeat positive")
+    elif song["valence"] <= 0.4:
+        words.append("dark somber")
+
+    if song["acousticness"] >= 0.7:
+        words.append("acoustic")
+    elif song["acousticness"] <= 0.2:
+        words.append("electronic produced")
+
+    if song["danceability"] >= 0.75:
+        words.append("danceable")
+
+    if song["tempo_bpm"] < 80:
+        words.append("slow tempo")
+    elif song["tempo_bpm"] >= 120:
+        words.append("fast tempo")
+
+    notes = song.get("notes", "")
+    if notes:
+        words.append(notes)
+    return ", ".join(words)
+
 
 def load_songs(csv_path: str) -> List[Dict]:
-    """Load songs from a CSV file into dicts, converting numeric columns to int/float."""
+    """Load songs from a CSV file into dicts, converting numeric columns to int/float.
+    Each song also gets a `description` built by build_description."""
     int_fields = ("id",)
     float_fields = ("energy", "tempo_bpm", "valence", "danceability", "acousticness")
 
@@ -58,6 +108,7 @@ def load_songs(csv_path: str) -> List[Dict]:
                 row[key] = int(row[key])
             for key in float_fields:
                 row[key] = float(row[key])
+            row["description"] = build_description(row)
             songs.append(row)
     return songs
 
